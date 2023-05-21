@@ -1,0 +1,7 @@
+/cmake-build-release/
+/cmake-build-debug/
+/hardwave/audiomagin_stm32/cmake-build-relwithdebinfo/
+/hardwave/audiomagin_stm32/cmake-build-release/
+/hardwave/audiomagin_stm32/cmake-build-minsizerel/
+/hardwave/audiomagin_stm32/cmake-build-debug/
+/.idea/
