@@ -22,6 +22,7 @@
 #include "stm32f4xx_it.h"
 #include "usart.h"
 #include "equalizer.h"
+#include "key.h"
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 /* USER CODE END Includes */
@@ -199,6 +200,17 @@ void TIM2_IRQHandler(void) {
     /* USER CODE BEGIN TIM2_IRQn 1 */
     ms_10++;
     /* USER CODE END TIM2_IRQn 1 */
+}
+
+void TIM3_IRQHandler(void) {
+    LL_TIM_ClearFlag_UPDATE(TIM3);
+    static uint8_t t{};
+    t++;
+    if(t==30){
+        t=0;
+        key_flash();
+        key_task();
+    }
 }
 
 /* USER CODE BEGIN 1 */

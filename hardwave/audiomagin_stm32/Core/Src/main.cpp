@@ -73,20 +73,25 @@ int main() {
     MX_I2S2_Init();
     MX_DAC_Init();
     MX_TIM6_Init();
+    MX_TIM3_Init();
     MX_I2C1_Init();
     MX_USART2_UART_Init();
     LL_USART_EnableIT_RXNE(USART2);
     RetargetInit(&huart1);
+
     ssd1306_Init(&hi2c1);
     ssd1306_Fill(Black);
     ssd1306_SetCursor(0, 0);
-    ssd1306_WriteString("hello,world", Font_7x10, White);
+    ssd1306_WriteString("hello,world1", Font_7x10, White);
+    ssd1306_UpdateScreen(&hi2c1);
 
 
     for (int i = 0; i < 10; i++) {
         eq1.set_gain(i, 0);
     }
     eq1.peak_filter_design();
+
+
 
 
 //    LL_TIM_EnableIT_UPDATE(TIM2);  //使能更新中断
@@ -103,6 +108,8 @@ int main() {
     HAL_TIM_Base_Start(&htim6);
     HAL_I2S_Receive_DMA(&hi2s2, (uint16_t *) i2s_dma_tmp, samples_per_packet * 2);//开启DMA接收,接收samples_per_packet个数据
     HAL_DAC_Start_DMA(&hdac, DAC_CHANNEL_1, (uint32_t *) dac_data, samples_per_packet, DAC_ALIGN_12B_R);
+    LL_TIM_EnableIT_UPDATE(TIM3);  //使能更新中断
+    LL_TIM_EnableCounter(TIM3);  //使能计数
 
     while (1) {
 //        if (flag) {

@@ -157,10 +157,22 @@ float equalizer::gain_computer(float x) {
     }
 }
 
-void equalizer::set_freq(uint8_t index, float freq){
+void equalizer::set_freq(uint8_t index, float freq) {
     this->freqs[index] = freq;
 }
 
 void equalizer::set_q(uint8_t index, float q) {
-    this->Q[index]=q;
+    this->Q[index] = q;
+}
+
+float equalizer::get_gain(uint8_t index) {
+    return this->gains[index];
+}
+
+float equalizer::get_freq(uint8_t index) {
+    return this->freqs[index];
+}
+
+float equalizer::get_q(uint8_t index) {
+    return this->Q[index];
 }

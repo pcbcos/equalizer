@@ -54,6 +54,12 @@ public:
 
     void set_q(uint8_t index, float q);
 
+    float get_gain(uint8_t index);
+
+    float get_freq(uint8_t index);
+
+    float get_q(uint8_t index);
+
     float get_enegry_fix();
 
     float alpha_r;

@@ -15,6 +15,11 @@
 #ifndef _SSD1306_H
 #define _SSD1306_H
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+
 #include "stm32f4xx_hal.h"
 #include "fonts.h"
 
@@ -57,12 +62,23 @@ typedef struct {
 //
 
 uint8_t ssd1306_Init(I2C_HandleTypeDef *hi2c);
+
 void ssd1306_UpdateScreen(I2C_HandleTypeDef *hi2c);
+
 void ssd1306_Fill(SSD1306_COLOR color);
+
 void ssd1306_DrawPixel(uint8_t x, uint8_t y, SSD1306_COLOR color);
+
 char ssd1306_WriteChar(char ch, FontDef Font, SSD1306_COLOR color);
-char ssd1306_WriteString(char* str, FontDef Font, SSD1306_COLOR color);
+
+char ssd1306_WriteString(char *str, FontDef Font, SSD1306_COLOR color);
+
 void ssd1306_SetCursor(uint8_t x, uint8_t y);
+
 void ssd1306_InvertColors(void);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif  // _SSD1306_H

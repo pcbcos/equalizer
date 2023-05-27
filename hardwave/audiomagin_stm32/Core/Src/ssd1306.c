@@ -1,4 +1,5 @@
 #include "ssd1306.h"
+#include "stm32f4xx_ll_utils.h"
 
 
 // Screenbuffer
@@ -23,7 +24,7 @@ static uint8_t ssd1306_WriteCommand(I2C_HandleTypeDef *hi2c, uint8_t command)
 uint8_t ssd1306_Init(I2C_HandleTypeDef *hi2c)
 {
     // Wait for the screen to boot
-    HAL_Delay(100);
+    LL_mDelay(100);
     int status = 0;
 
     // Init LCD
