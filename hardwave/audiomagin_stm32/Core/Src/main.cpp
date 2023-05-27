@@ -26,12 +26,12 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "arm_math.h"
-#include <cstdio>
 #include "retarget.h"
 #include "usart.h"
 #include "random"
 #include "equalizer.h"
 #include "i2c.h"
+#include "ssd1306.h"
 
 
 int16_t i2s_dma_tmp[samples_per_packet * 4];//接受ADC数据
@@ -77,6 +77,10 @@ int main() {
     MX_USART2_UART_Init();
     LL_USART_EnableIT_RXNE(USART2);
     RetargetInit(&huart1);
+    ssd1306_Init(&hi2c1);
+    ssd1306_Fill(Black);
+    ssd1306_SetCursor(0, 0);
+    ssd1306_WriteString("hello,world", Font_7x10, White);
 
 
     for (int i = 0; i < 10; i++) {
